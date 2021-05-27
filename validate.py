@@ -8,15 +8,14 @@ with open('config.json', encoding='utf8') as config_json:
 
 results = {"errors": [], "warnings": []}
 
+#symlink the input in - no change to the data
 if not os.path.exists("secondary"):
-    os.mkdir("secondary")
+    os.symlink(config["parc-stats"], "secondary")
 
 if not os.path.exists("output"):
-    os.mkdir("output")
-
-#TODO - validate and create vis using reference data
+    os.symlink(config["parc-stats"], "output")
 
 with open("product.json", "w") as fp:
-    json.dump(results, fp, cls=NumpyEncoder)
+    json.dump(results, fp)
 
 print("done");
