@@ -9,11 +9,14 @@ with open('config.json', encoding='utf8') as config_json:
 results = {"errors": [], "warnings": []}
 
 #symlink the input in - no change to the data
-if not os.path.exists("secondary"):
-    os.symlink(config["parc-stats"], "secondary")
-
 if not os.path.exists("output"):
     os.symlink(config["parc-stats"], "output")
+
+#we don't have anything for secondary 
+if not os.path.exists("secondary"):
+    #os.symlink(config["parc-stats"], "secondary")
+    os.mkdir("secondary")
+
 
 with open("product.json", "w") as fp:
     json.dump(results, fp)
